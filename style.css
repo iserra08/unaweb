@@ -1,0 +1,118 @@
+:root {
+    --bg-color: #a702e8;
+    --text-color: #99e8aa;
+    --accent-color: #99e8aa;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* Aplicando la fuente JetBrains Mono */
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+pre {
+    font-size: 16px;
+    line-height: 1.2em;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.status-ascii {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+
+.message {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+/* Estilos del Minijuego */
+.game-area {
+    border: 2px solid var(--text-color);
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.game-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+#game-board {
+    width: 100%;
+    height: 180px;
+    background-color: rgba(0,0,0,0.15);
+    position: relative;
+    cursor: crosshair;
+    overflow: hidden;
+    display: none; /* Oculto hasta que se inicia el juego */
+}
+
+#bug {
+    position: absolute;
+    color: #fff; /* Blanco para que destaque más sobre el fondo */
+    font-weight: 700;
+    font-size: 1.2em;
+    transition: top 0.1s, left 0.1s;
+    user-select: none; /* Evita que el texto se seleccione al hacer clic rápido */
+}
+
+.game-controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+button {
+    background: transparent;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-weight: 700;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+footer {
+    margin-top: 40px;
+    font-size: 0.8em;
+    opacity: 0.7;
+}
