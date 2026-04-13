@@ -2,12 +2,17 @@
     --bg-color: #a702e8;
     --text-color: #99e8aa;
     --accent-color: #99e8aa;
+    --board-bg: rgba(0, 0, 0, 0.2);
+    --highlight: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    /* Aplicando la fuente JetBrains Mono */
     font-family: 'JetBrains Mono', monospace;
     margin: 0;
     padding: 20px;
@@ -17,7 +22,6 @@ body {
     justify-content: space-between;
     min-height: 100vh;
     text-align: center;
-    box-sizing: border-box;
 }
 
 .main-content {
@@ -25,94 +29,260 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 20px;
     max-width: 600px;
     width: 100%;
 }
 
+/* ASCII Art Styles */
 pre {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.2em;
     margin: 0;
     color: var(--text-color);
+    white-space: pre;
 }
 
 .status-ascii {
     color: var(--accent-color);
     font-weight: 700;
+    text-shadow: 0 0 10px rgba(153, 232, 170, 0.3);
 }
 
 h1 {
-    font-size: 1.8em;
+    font-size: 2em;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     margin: 10px 0;
+    text-transform: uppercase;
 }
 
 .message {
-    font-size: 1em;
-    line-height: 1.5;
-    margin-bottom: 30px;
+    font-size: 0.95em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 500px;
 }
 
-/* Estilos del Minijuego */
-.game-area {
+/* Game Selector Menu */
+.game-selector {
+    width: 100%;
     border: 2px solid var(--text-color);
     padding: 15px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--board-bg);
+    margin-bottom: 10px;
 }
 
-.game-title {
+.game-menu-title {
     font-size: 1.1em;
     font-weight: 700;
     margin-bottom: 15px;
+    letter-spacing: 2px;
 }
 
-#game-board {
-    width: 100%;
-    height: 180px;
-    background-color: rgba(0,0,0,0.15);
-    position: relative;
-    cursor: crosshair;
-    overflow: hidden;
-    display: none; /* Oculto hasta que se inicia el juego */
-}
-
-#bug {
-    position: absolute;
-    color: #fff; /* Blanco para que destaque más sobre el fondo */
-    font-weight: 700;
-    font-size: 1.2em;
-    transition: top 0.1s, left 0.1s;
-    user-select: none; /* Evita que el texto se seleccione al hacer clic rápido */
-}
-
-.game-controls {
-    margin-top: 15px;
+.game-menu {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9em;
+    flex-direction: column;
+    gap: 10px;
 }
 
-button {
+.game-btn {
     background: transparent;
     border: 1px solid var(--text-color);
     color: var(--text-color);
     font-family: inherit;
     font-weight: 700;
-    padding: 8px 16px;
+    padding: 12px 20px;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: all 0.2s;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
-button:hover {
+.game-btn:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    transform: translateX(5px);
+}
+
+/* Game Containers */
+.game-container {
+    width: 100%;
+    border: 2px solid var(--text-color);
+    padding: 20px;
+    background-color: var(--board-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.game-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.game-board {
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--text-color);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bug Game */
+#bug-board {
+    height: 200px;
+    cursor: crosshair;
+}
+
+#bug {
+    position: absolute;
+    color: var(--highlight);
+    font-weight: 700;
+    font-size: 1.3em;
+    transition: top 0.08s, left 0.08s;
+    user-select: none;
+}
+
+/* Snake & Pong Canvas */
+#snake-board,
+#pong-board {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Memory Game */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    border: 2px solid var(--text-color);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--text-color);
+    font-size: 1.5em;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    user-select: none;
+}
+
+.memory-card:hover {
+    background-color: rgba(153, 232, 170, 0.2);
+}
+
+.memory-card.flipped {
     background-color: var(--text-color);
     color: var(--bg-color);
 }
 
+.memory-card.matched {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Game Stats */
+.game-stats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 0;
+    font-size: 1em;
+    font-weight: 700;
+    border-top: 1px dashed var(--text-color);
+    border-bottom: 1px dashed var(--text-color);
+}
+
+.game-hint {
+    font-size: 0.85em;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+/* Buttons */
+.play-btn,
+.back-btn {
+    background: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-weight: 700;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1em;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+.play-btn:hover,
+.back-btn:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    transform: scale(1.05);
+}
+
+.back-btn {
+    border-color: var(--text-color);
+    opacity: 0.8;
+}
+
+.back-btn:hover {
+    opacity: 1;
+}
+
+/* Footer */
 footer {
-    margin-top: 40px;
-    font-size: 0.8em;
-    opacity: 0.7;
+    margin-top: 30px;
+    font-size: 0.85em;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    pre {
+        font-size: 11px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .game-menu {
+        gap: 8px;
+    }
+
+    .game-btn {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .memory-grid {
+        gap: 5px;
+        max-width: 280px;
+    }
+
+    .memory-card {
+        font-size: 1.2em;
+    }
 }

@@ -4,43 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servidor Fuera de Servicio - DistriVallès S.L.</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="main-content">
         <pre class="status-ascii">
-   _________
-  |  [>_&lt;]  |
-  |  ERROR  |
-  |_________|
-    _|___|_
-   [_______]
+   ╔═══════════════════════╗
+   ║   [>_<]  SYSTEM DOWN  ║
+   ║      ═══════════      ║
+   ║    ● ERROR 404 ●      ║
+   ╚═══════════════════════╝
         </pre>
 
-        <h1>NEXIA</h1>
-        <p class="message">-- Servidor fuera de cobertura / apagado --<br>
-        Nuestro equipo está realizando tareas de mantenimiento o experimentando problemas técnicos. Volveremos pronto.</p>
+        <h1>╾╾ NEXIA ╾╾</h1>
+        <p class="message">
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+        │ SERVIDOR FUERA DE COBERTURA │<br>
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+        <br>
+        Nuestro equipo está realizando tareas de mantenimiento<br>
+        o experimentando problemas técnicos.<br>
+        <br>
+        ══► ¡Mientras tanto, diviértete! ◄══
+        </p>
 
-        <div class="game-area">
-            <div class="game-title">== [Minijuego: Atrapa el BUG!] ==</div>
-            <div id="game-board">
+        <!-- Selector de Minijuegos -->
+        <div class="game-selector">
+            <div class="game-menu-title">══ [ SELECCIONA MINIJUEGO ] ══</div>
+            <div class="game-menu">
+                <button class="game-btn" data-game="bug">[1] Atrapa el BUG</button>
+                <button class="game-btn" data-game="snake">[2] Snake ASCII</button>
+                <button class="game-btn" data-game="pong">[3] Pong</button>
+                <button class="game-btn" data-game="memory">[4] Memoria</button>
+            </div>
+        </div>
+
+        <!-- Minijuego: Atrapa el BUG -->
+        <div id="bug-game" class="game-container hidden">
+            <div class="game-title">╾╾ [Atrapa el BUG!] ╾╾</div>
+            <div id="bug-board" class="game-board">
                 <span id="bug">[B]</span>
             </div>
-            <div class="game-controls">
-                <span>Puntos: <span id="score">0</span></span>
-                <span>Tiempo: <span id="timer">15</span>s</span>
-                <button id="start-btn">&gt; [INICIAR] &lt;</button>
+            <div class="game-stats">
+                <span>Puntos: <span id="bug-score">0</span></span>
+                <span>Tiempo: <span id="bug-timer">15</span>s</span>
             </div>
+            <button id="bug-start-btn" class="play-btn">&gt; [INICIAR] &lt;</button>
+            <button class="back-btn">&lt; [VOLVER] &gt;</button>
+        </div>
+
+        <!-- Minijuego: Snake -->
+        <div id="snake-game" class="game-container hidden">
+            <div class="game-title">╾╾ [Snake ASCII] ╾╾</div>
+            <canvas id="snake-board" class="game-board" width="300" height="300"></canvas>
+            <div class="game-stats">
+                <span>Puntos: <span id="snake-score">0</span></span>
+                <span>Longitud: <span id="snake-length">3</span></span>
+            </div>
+            <div class="game-hint">Usa las flechas del teclado para moverte</div>
+            <button id="snake-start-btn" class="play-btn">&gt; [INICIAR] &lt;</button>
+            <button class="back-btn">&lt; [VOLVER] &gt;</button>
+        </div>
+
+        <!-- Minijuego: Pong -->
+        <div id="pong-game" class="game-container hidden">
+            <div class="game-title">╾╾ [Pong ASCII] ╾╾</div>
+            <canvas id="pong-board" class="game-board" width="400" height="250"></canvas>
+            <div class="game-stats">
+                <span>Jugador: <span id="pong-player">0</span></span>
+                <span>CPU: <span id="pong-cpu">0</span></span>
+            </div>
+            <div class="game-hint">Mueve el ratón para controlar la paleta</div>
+            <button id="pong-start-btn" class="play-btn">&gt; [INICIAR] &lt;</button>
+            <button class="back-btn">&lt; [VOLVER] &gt;</button>
+        </div>
+
+        <!-- Minijuego: Memoria -->
+        <div id="memory-game" class="game-container hidden">
+            <div class="game-title">╾╾ [Memoria] ╾╾</div>
+            <div id="memory-board" class="memory-grid"></div>
+            <div class="game-stats">
+                <span>Movimientos: <span id="memory-moves">0</span></span>
+                <span>Parejas: <span id="memory-pairs">0</span>/8</span>
+            </div>
+            <button id="memory-start-btn" class="play-btn">&gt; [INICIAR] &lt;</button>
+            <button class="back-btn">&lt; [VOLVER] &gt;</button>
         </div>
     </div>
 
-    <footer>Provided by NEXIA</footer>
+    <footer>
+        ═══════════════════════<br>
+        Provided by NEXIA © 2026<br>
+        ═══════════════════════
+    </footer>
 
     <script src="script.js"></script>
 </body>
